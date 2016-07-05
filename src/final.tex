@@ -1,0 +1,424 @@
+%-------------------
+%Beginn des Kopfbereiches
+%-------------------
+
+%Wir verwenden eine DIN-A4-Seite und die Schriftgröße 12.
+\documentclass[a4paper,
+               12pt,
+               listsleft,
+               %openany,               % Nach neuem Kapitel eine neue Seite beginnen
+               oneside,
+               openbib,
+               smallheadings]{scrartcl}
+
+%Diese drei Pakete benötigen wir für die Umlaute, deutsche (oder französische) Silbentrennung etc.
+%Apple-Nutzer sollten anstelle von \usepackage[latin1]{inputenc} das Paket \usepackage[applemac]{inputenc} verwenden
+\usepackage[T1]{fontenc}
+\usepackage[latin1,ansinew]{inputenc}
+%serifenlose Schrift
+\usepackage{helvet} %Helvetica clone
+\renewcommand{\familydefault}{\sfdefault} 
+
+\usepackage{ngerman}
+%\usepackage[french]{babel}
+
+%für die Nutzung für Geisteswissenschaften, etc.
+%\usepackage{jurabib}
+
+%Das Paket wird für die anderthalb-zeiligen Zeilenabstand benötigt
+\usepackage{setspace}
+\usepackage[marginal]{footmisc}
+
+%Einrückung eines neuen Absatzes
+\setlength{\parindent}{0em}
+
+%Definition der Ränder (Texabmessungen oben,unten,links,rechts in mm ohne Kopfzeile)
+\usepackage[paper=a4paper,
+            includehead,
+            left=40mm,
+            right=20mm,
+            top=20mm,
+            bottom=20mm]
+            {geometry} 
+
+% linksbündige Fußboten
+\deffootnote{1.5em}{1em}{%
+\makebox[1.5em][l]{\thefootnotemark}}
+
+%Abstand der Fußnoten
+\deffootnote{1em}{1em}{\textsuperscript{\thefootnotemark\ }}
+
+%Serifenlose Fußnoten
+\setkomafont{footnote}{\sffamily}
+\hyphenation{Tra-jektorien}
+
+% Durchgängig nummerierte Fußnoten
+%\usepackage[flushmargin,multiple]{footmisc}
+\usepackage{url}
+\usepackage{color}
+\usepackage[automark,
+            plainheadsepline,                           % Markieren,Kopfzeile auch bei Chapter
+          nouppercase]
+            {scrpage2} 
+
+\makeatletter
+\usepackage{remreset}
+\@removefromreset{footnote}{chapter}
+\makeatother
+
+%Regeln, bis zu welcher Tiefe (section,subsection,subsubsection) Überschriften angezeigt werden sollen (Anzeige der Überschriften im Verzeichnis / Anzeige der Nummerierung)
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+%Einrückung eines neuen Absatzes
+\setlength{\parindent}{0em}
+
+%\renewcommand*{\chapterheadstartvskip}{\vspace*{-1\baselineskip}}            % Chapter nach oben rücken
+\usepackage{typearea}
+\clubpenalty = 10000                                    % Schusterjungen vermeiden
+\widowpenalty = 10000                                   % Hurenkinder vermeiden
+
+%gepunktete Linien im Inhaltsverzeichnis
+\usepackage[titles]{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% Einstellungen für PDF Dokumente Links,Farben und Co
+\usepackage{color}
+\definecolor{darkblue}{rgb}{0,0,.5}
+\usepackage[final,
+%           dvips,                                      % auskommentieren, falls pdflatex verwendet wird
+            pdftitle=Europäische Identität,             % Titel des PDF Dokuments
+            pdfauthor=Swen Mayer,                       % Author des PDF Dokuments
+            hypertexnames=true,
+            breaklinks=true,
+            colorlinks=true,
+            linkcolor=darkblue,
+            menucolor=darkblue,
+            pagecolor=darkblue,
+            urlcolor=darkblue,
+            citecolor=darkblue,
+            plainpages=false,                           % soll doppelte Seitenbezeichnung verhindern,
+            pdfpagelabels,                              % funktioniert bei Titelblatt nicht
+            bookmarks=true,
+%           bookmarksopen=true,                         % Lesezeichen komplett offen
+%           bookmarksopenlevel={1},
+            bookmarksnumbered=true,                     % Lesezeichen werden mit Kapitelnummern angezeigt
+            ]{hyperref}
+
+%Umbrechen von Internetadressen in Fußnoten
+\usepackage[hyphenbreaks]{breakurl}
+\usepackage{graphicx}                                   % Grafikpaket zum Einfuegen von Bildern
+\usepackage{subfig}                                     % Grafikpaket für Nebeneinanderstehende Bilder
+\renewcommand{\figurename}{Abb.}                        % umbenennen der Abbildungsbeschriftung in Abb.
+%-------------------
+%Ende des Kopfbereiches
+%------------------- 
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+% Taken from Lena Herrmann at 
+% http://lenaherrmann.net/2010/05/20/javascript-syntax-highlighting-in-the-latex-listings-package
+\usepackage{listings}
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+%-------------------
+%Hier beginnt der Text deiner Hausarbeit
+%-------------------
+
+\begin{document}
+
+%Beginn der Titelseite
+
+\begin{titlepage}
+\begin{center}
+\begin{large}Friedrich-Schiller-Universität Jena\end{large}\vspace{0,25cm}\linebreak  
+Fakultät für Sozial- und Verhaltenswissenschaften\linebreak\medskip 
+Institut für Politikwissenschaft\linebreak\vspace*{2cm}
+
+\textbf{\begin{LARGE}Hausarbeit\end{LARGE}}\vspace*{2.5cm}\linebreak
+\begin{large}\textbf{Thema:}\end{large}\linebreak
+
+\begin{LARGE}\textbf{TITEL} \\ \vspace{11pt} Untertitel \end{LARGE}\vspace{0.90cm} \\
+%\begin{large} - untermuster   \vspace{1,0cm}  \\       \end{large}
+\end{center}
+
+\begin{large} eingereicht bei: Florian Weber, M.A.\vspace{0,25cm} \\ \end{large}
+\begin{large} eingereicht von: Swen Mayer \vspace{0,25cm}\\ Wintersemester 2011/12\vspace{0,25cm}\\ Seminar: Seminartitel
+\end{large}
+%\linebreak
+%\end{center}
+
+\begin{large}
+\vfill {11. Fachsemester/ Magister \\  Matrikelnummer: 85489 \\HF Politikwissenschaft \\NF Neurere Geschichte \\NF Volkskunde/ Kulturgeschichte\\ }
+\end{large}
+
+\begin{small}
+\vfill {Swen Mayer \\ Am Eichwald 8a \\  07422 Bad Blankenburg \\  Swen.Mayer(at)uni-jena.de \\ Abgabedatum 2012\\ }
+%\today       %das heutige Datum
+\end{small}
+
+%\end{center}
+
+\end{titlepage}
+%Ende der Titelseite
+
+%Inhaltsverzeichnis (aktualisiert sich erst nach dem zweiten Setzen)
+\tableofcontents
+\thispagestyle{empty}
+
+%Beginn einer neuen Seite
+\clearpage
+
+%Anderthalbzeiliger Zeilenabstand ab hier
+\onehalfspacing
+%\clearscrheadfoot
+%\pagestyle{empty}
+
+
+%\section*{Abstract}
+
+\clearpage
+%\newpage
+\pagenumbering{arabic}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\setheadsepline{1pt}[{\color[rgb]{0,0,0}}]
+\ohead[\pagemark]{\pagemark}
+\ihead{{\rm \automark}}
+\clearpage
+%----------------------
+%Ende der Titelseiten
+%----------------------
+
+
+%----------------------
+%Beginn des Textfeldes
+%----------------------
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead{{\rm \headmark}}
+\ohead[\pagemark]{\pagemark}
+%\ihead{\rm \automark}
+\section{Einleitung}
+\thispagestyle{plain}
+\begin{quote}
+\begin{small}
+\textit{\glqq Die Demokratie ist die Wahrheit der Monarchie, die Monarchie ist nicht die Wahrheit der Demokratie ... Die Monarchie kann nicht, die Demokratie kann aus sich selbst begriffen werden. In der Demokratie erlangt keines der Momente eine andere Bedeutung, als ihm zukommt. Jedes ist wirklich nur Moment des ganzen Demos ... Demokratie ist die Verfassungsgattung.\grqq}\\
+\end{small}
+\vspace{5mm}
+\begin{small}
+\hspace{50mm} Karl Marx
+\end{small}
+\end{quote}
+\begin{verbatim}
+your
+code
+example
+\end{verbatim}
+\begin{lstlisting}
+// This is a comment 
+console.log("Hello World!");
+function testfunction(getstuff){
+return anything;
+}
+\end{lstlisting}
+\medskip
+\begin{lstlisting}[caption=My Javascript Example]
+Name.prototype = {
+  methodName: function(params){
+    var doubleQuoteString = "some text";
+    var singleQuoteString = 'some more text';
+    // this is a comment
+    if(this.confirmed != null && typeof(this.confirmed) == Boolean && this.confirmed == true){
+      document.createElement('h3');
+      $('#system').append("This looks great");
+      return false;
+    } else {
+      throw new Error;
+    }
+  }
+}
+\end{lstlisting}
+
+\newpage      
+\section{Überschrift 1}
+\thispagestyle{plain}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci. Nunc nec neque. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Maecenas malesuada. Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu. Phasellus accumsan cursus velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum elit. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Vestibulum fringilla pede sit amet augue. In turpis. Pellentesque posuere. Praesent turpis. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Donec elit libero, sodales nec, volutpat a, suscipit non, turpis. Nullam sagittis. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit pede quis nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Ut varius tincidunt libero. Phasellus dolor. Maecenas vestibulum mollis diam. Pellentesque ut neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. In ac felis quis tortor malesuada pretium. Pellentesque auctor neque nec urna. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Aenean viverra rhoncus pede. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut non enim eleifend felis pretium feugiat. Vivamus quis mi. Phasellus a est. Phasellus magna. In hac habitasse platea dictumst. Curabitur at lacus ac velit ornare lobortis. 
+Curabitur a felis in nunc fringilla tristique. Morbi mattis ullamcorper velit. Phasellus gravida semper nisi. Nullam vel sem. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Sed hendrerit. Morbi ac felis. Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede. Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi. Nunc nulla. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Donec venenatis vulputate lorem. Morbi nec metus. Phasellus blandit leo ut odio. Maecenas ullamcorper, dui et placerat feugiat, eros pede varius nisi, condimentum viverra felis nunc et lorem. Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. In auctor lobortis lacus. Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Vestibulum ullamcorper mauris at ligula. Fusce fermentum. Nullam cursus lacinia erat. Praesent blandit laoreet nibh. Fusce convallis metus id felis luctus adipiscing. Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Quisque id mi. Ut tincidunt tincidunt erat. Etiam feugiat lorem non metus. Vestibulum dapibus nunc ac augue. Curabitur vestibulum aliquam leo. Praesent egestas neque eu enim. In hac habitasse platea dictumst. Fusce a quam. Etiam ut purus mattis mauris sodales aliquam. Curabitur nisi. Quisque malesuada placerat nisl. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod ligula urna in dolor. Mauris sollicitudin fermentum libero. Praesent nonummy mi in odio. Nunc interdum lacus sit amet orci. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Morbi mollis tellus ac sapien. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Fusce vel dui. Sed in libero ut nibh placerat accumsan. Proin faucibus arcu quis ante. In consectetuer turpis ut velit. Nulla sit amet est. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Suspendisse feugiat. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi. Praesent nec nisl a purus blandit viverra. Praesent ac massa at ligula laoreet iaculis. Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Fusce pharetra convallis urna. Quisque ut nisi. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Suspendisse non nisl sit amet velit hendrerit rutrum. Ut leo. Ut a nisl id ante tempus hendrerit. Proin pretium, leo ac pellentesque mollis, felis nunc ultrices eros, sed gravida augue augue mollis justo. Suspendisse eu ligula. Nulla facilisi. Donec id justo. Praesent porttitor, nulla vitae posuere iaculis, arcu nisl dignissim dolor, a pretium mi sem ut ipsum. Curabitur suscipit suscipit tellus. Praesent vestibulum dapibus nibh. Etiam iaculis nunc ac metus. Ut id nisl quis enim dignissim sagittis. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros. Proin magna. Duis vel nibh at velit scelerisque suscipit. Curabitur turpis. Vestibulum suscipit nulla quis orci. Fusce ac felis sit amet ligula pharetra condimentum. Maecenas egestas arcu quis ligula mattis placerat. Duis lobortis massa imperdiet quam. Suspendisse potenti. Pellentesque commodo eros a enim. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Sed libero. Aliquam erat volutpat. Etiam vitae tortor. Morbi vestibulum volutpat enim. Aliquam eu nunc. Nunc sed turpis. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Nulla porta dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. 
+Pellentesque dapibus hendrerit tortor. Praesent egestas tristique nibh. Sed a libero. Cras varius. Donec vitae orci sed dolor rutrum auctor. Fusce egestas elit eget lorem. Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Nam at tortor in tellus interdum sagittis. Aliquam lobortis. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Curabitur blandit mollis lacus. Nam adipiscing. Vestibulum eu 
+
+
+\newpage
+\section{Überschrift 2}
+\thispagestyle{plain}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci. Nunc nec neque. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Maecenas malesuada. Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu. Phasellus accumsan cursus velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum elit. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Vestibulum fringilla pede sit amet augue. In turpis. Pellentesque posuere. Praesent turpis. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Donec elit libero, sodales nec, volutpat a, suscipit non, turpis. Nullam sagittis. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit pede quis nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Ut varius tincidunt libero. Phasellus dolor. Maecenas vestibulum mollis diam. Pellentesque ut neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. In ac felis quis tortor malesuada pretium. Pellentesque auctor neque nec urna. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Aenean viverra rhoncus pede. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut non enim eleifend felis pretium feugiat. Vivamus quis mi. Phasellus a est. Phasellus magna. In hac habitasse platea dictumst. Curabitur at lacus ac velit ornare lobortis. 
+Curabitur a felis in nunc fringilla tristique. Morbi mattis ullamcorper velit. Phasellus gravida semper nisi. Nullam vel sem. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Sed hendrerit. Morbi ac felis. Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede. Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi. Nunc nulla. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Donec venenatis vulputate lorem. Morbi nec metus. Phasellus blandit leo ut odio. Maecenas ullamcorper, dui et placerat feugiat, eros pede varius nisi, condimentum viverra felis nunc et lorem. Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. In auctor lobortis lacus. Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Vestibulum ullamcorper mauris at ligula. Fusce fermentum. Nullam cursus lacinia erat. Praesent blandit laoreet nibh. Fusce convallis metus id felis luctus adipiscing. Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Quisque id mi. Ut tincidunt tincidunt erat. Etiam feugiat lorem non metus. Vestibulum dapibus nunc ac augue. Curabitur vestibulum aliquam leo. Praesent egestas neque eu enim. In hac habitasse platea dictumst. Fusce a quam. Etiam ut purus mattis mauris sodales aliquam. Curabitur nisi. Quisque malesuada placerat nisl. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod ligula urna in dolor. Mauris sollicitudin fermentum libero. Praesent nonummy mi in odio. Nunc interdum lacus sit amet orci. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Morbi mollis tellus ac sapien. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Fusce vel dui. Sed in libero ut nibh placerat accumsan. Proin faucibus arcu quis ante. In 
+
+ 
+\newpage
+\section{Überschrift 3}
+\thispagestyle{plain}
+blalalala
+\newpage  
+\section{Fazit}
+\thispagestyle{plain} 
+endblablubbla
+%----------------------
+%Ende des Textfeldes
+%----------------------
+\clearpage
+\clearscrheadfoot
+\appendix
+\section{Quellen \& Literatur}
+\thispagestyle{plain}
+\pagenumbering{roman}
+%\bibliographystyle{jurabib}
+%\bibliography{HA_Eigene_Vorlage}
+
+\begin{list}{}{
+\setlength{\leftmargin}{1cm}
+\setlength{\itemindent}{-1cm}
+}
+\item Berger, Stefan: Narrating the Nation. Die Macht der Vergangenheit, in: APuZ (2008) Bd. 1-2, S. 7-13.
+\item Brodersen, Kai/ Zimmermann, Bernhard (Hrsg.): Metzler. Lexikon der Antike, Stuttgart/ Weimar 2000.
+\item Kertész, Imre: Europas bedrückende Erbschaft, in: APuZ (2008), Bd.1-2, S. 3-6.
+\item Nelhiebel, Kurt: Der braune Faden. Vom deutschen Hass auf Juden und Kommunisten, in: Blätter für deutsche und internationale Politik (2010), H.4, S. 107-115.
+\item Niethammer, Lutz: Kollektive Identität. Heimliche Quellen einer unheimlichen Konjunktur, Hamburg 2000.
+\item Ostergard, Uffe: Der Holocaust und europäische Werte, in: APuZ (2008), Bd.1-2, S.25-30.
+\item Schmahle, Wolfgang: Geschichte der europäischen Identität, in: APuZ (2008), Bd.1-2, S. 14-19.
+\item Winkler, Heinrich August: Was heißt westliche Wertegemeinschaft?, in: Internationale Politik (2007) Jg. 62, H. 4, S. 66-85.
+\end{list}
+\clearpage
+
+\section{Internetquellen}
+\thispagestyle{plain}
+\begin{list}{}{
+\setlength{\leftmargin}{1cm}
+\setlength{\itemindent}{-1cm}
+}
+\item Antisemitismus in Deutschland 2009 - eine Chronik, \url{http://arug.de/component/option,com_docman/task,doc_view/gid,27/}, am 17.04.10.
+\item Anti-Semitism stirs as Hungary goes to polls, in: The Times-Online vom 11.04.10, \url{http://www.timesonline.co.uk/tol/news/world/europe/article7094323.ece}, am 15.04.10.
+\item Diederichsen, Diedrich: Kulturindustrie und Amerikakritik. Ist Adornos These, in der Kulturindustrie sei Kunst zur Massenkultur geworden, antiamerikanisch? Nein, aber die Frage ist trotzdem gut, in: Jungle World Nr. 38, vom 10.09.03, \url{http://jungle-world.com/artikel/2003/37/11345.html}, am 16.04.10.
+\item European Navigator, \url{http://www.ena.lu/}, am 05.04.10.
+\item Hauck, Barbara: Das Gleiche, aber anders. Über die Konstituierung einer neuen europäischen Identität, in: Phase 2 (2004), H.11, \url{http://phase2.nadir.org/}, am 16.04.10.
+\item Hennig, Eike: >>Einen Schlussstrich unter die nationalsozialistische
+Vergangenheit ziehen<< Zur politischen Soziologie eines historischen Deutungsmusters, in: Einsicht 02. Bulletin des Fritz Bauer Instituts, \url{http://www.fritz-bauer-institut.de/publikationen/einsicht/Einsicht-02_hennig.pdf}, am 17.04.10.
+\item \glqq Ich habe gelernt: Nie wieder Auschwitz\grqq, in Sueddeutsche-Online vom 24.01.05, \url{http://www.sueddeutsche.de/politik/612/351445/text/}, am 07.04.10.
+\item Markovits, Andrei S.: Zwillingsbrüder. Über europäischen Antisemitismus und Antiamerikanismus, in: Jungle World Nr. 48 vom 17.09.04 \url{http://jungle-world.com/artikel/2004/47/14110.html}, am 17.04.10.
+\item Rede von Bundeskanzlerin Dr. Angela Merkel vor der Knesset am 18. März 2008 in Jerusalem, in: Bulletin 26-1,  \url{http://www.bundesregierung.de/nn_774/Content/DE/Bulletin/2008/03/26-1-bk-knesset.html}\\, am 09.04.10.
+\item Regisseur Lanzmann \glqq schockiert\grqq~ über Krawalle bei Israel-Film, in: Spiegel-Online, vom 19.11.09, \url{http://www.spiegel.de/kultur/gesellschaft/0,1518,661980,00.html}, am 17.04.10.
+\item Wir sind alle Amerikaner, in: Die Welt-Online vom 13.09.01, \url{http://www.welt.de/print-welt/article475606/Wir_sind_alle_Amerikaner.html}, am 06.04.10.
+\end{list}
+\clearpage
+
+\section{Erklärung}
+\thispagestyle{plain}
+Hiermit erkläre ich, dass ich die vorliegende Arbeit selbst angefertigt und alle von mir benutzten Hilfsmittel und Quellen angegeben habe; alle wörtlichen Zitate und Entlehnungen aus fremden Arbeiten sind als solche gekennzeichnet.\\
+\\
+\\
+Jena, den Abgabedatum\\
+\\
+\\
+\rule{60mm}{0,2mm} \\
+\hspace{50mm}Swen Mayer
+\clearpage
+\end{document}
+%-------------------
+%Hier endet der Text deiner Hausarbeit
+%-------------------
+
+%Ein längeres Zitat
+%\begin{quote}
+%Vel eum iriure dolor in hendrerit in vulputate velit esse. Modo typi qui nunc nobis, videntur parum clari. Mutationem consuetudium lectorum mirum est notare quam littera gothica quam nunc. Litterarum formas humanitatis per seacula quarta decima et quinta decima eodem fiant sollemnes in\footnote{Mazim placerat facer possim assum typi non habent claritatem insitam est usus legentit.}.
+%\end{quote}
+
+% Ii legunt saepius claritas est etiam processus dynamicus qui sequitur putamus parum claram anteposuerit. In iis qui facit eorum claritatem Investigationes demonstraverunt lectores legere me lius quod. Ipsum dolor sit amet consectetuer adipiscing elit sed diam nonummy nibh euismod, tincidunt ut laoreet.
+ 
+ 
+%Eine einfache Liste
+
+%\begin{itemize}
+%\item Lorem ipsum
+%\item Doloret maior
+%\item Processus dynamicus
+%\item Tincidunt natio
+%\end{itemize}
+% Zwei Bilder nebeneinander
+
+%-----------------------------
+%Ein einfaches Bild
+%-----------------------------
+%\begin{figure}
+%\centering
+%\includegraphics[width=7cm]{/home/swen/Studium220509/KG_Klassiker/rohrtv.jpg}
+%\caption[Kabelchaos]
+%\label{Test}
+%\end{figure}
+
+%-----------------------------
+% Zwei Bilder nebeneinander
+%-----------------------------
+%\begin{figure}
+%\centering
+%\hfil %
+%\subfloat [Titel 1 \label{pic:home/swen/Studium220509/KG_Klassiker/99.jpg}]{\includegraphics[scale=0.2] {/home/swen/Studium220509/KG_Klassiker/99.jpg}}
+%\hspace{1cm} %
+%\subfloat [width=5cm][Titel 2 \label{pic:home/swen/Studium220509/KG_Klassiker/8.jpg}]{\includegraphics[height=5cm]%{/home/swen/Studium220509/KG_Klassiker/8.jpg}}
+%\hfil
+%\caption{2 Bilder: a) Ex, b) Hand}
+%\label{Transportformeln}
+%\end{figure}
