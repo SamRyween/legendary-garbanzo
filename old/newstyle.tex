@@ -1,0 +1,20 @@
+%Papierformat 
+\documentclass[11pt]{article} 
+
+\usepackage[ngerman]{babel}         %deutsche Silbentrennung 
+\usepackage{graphicx}                  %Bilder einfuegen 
+\usepackage{pdfpages}                  %PDFs einbinden 
+\usepackage[ansinew]{inputenc}   %deutsche Umlaute 
+\usepackage{fancyhdr}                  %Eigene Kopf- und Fuﬂzeile 
+\usepackage{geometry}                  %Formatierung Textkˆrper 
+\usepackage{setspace} 
+
+\setstretch{1.4} %Zeilenabstand 
+\geometry{a4paper, left=40mm, right=30mm, top=30mm, bottom=20mm, textwidth=140mm} 
+
+   %Definition der Kopf- und Fuﬂzeile 
+   \pagestyle{fancy} %eigener Seitenstil 
+   \fancyhf{} %alle Kopf- und Fuﬂzeilenfelder bereinigen 
+   \fancyhead[L]{\textit{\leftmark}} %odd left Kursiv 
+   \fancyhead[R]{\textit{\thepage}} %Kopfzeile rechts 
+   \renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
